@@ -1,0 +1,46 @@
+
+<!--
+Created by chaochen on 15/10/10.
+
+--><!DOCTYPE html>
+<html ng-app="CartApp">
+  <head>
+    <title>You Order</title>
+    <script src="script/angular.js"></script>
+    <script src="script/cartcontroller.js"></script>
+    <!--link(rel='stylesheet', href='/stylesheets/style.css')-->
+  </head>
+  <body>
+    <div ng-controller="CartController">
+      <h1>cart</h1>
+      <table>
+        <tr ng-repeat="item in items">
+          <td ng-bind="item.title"></td>
+          <!--{{item.title}}-->
+          <td>
+            <input ng-model="item.quantity">
+          </td>
+          <td>{{item.price | currency}}</td>
+          <td>{{item.price * item.quantity | currency}}</td>
+          <td>
+            <button ng-click="remove($index)">Remove</button>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Total Price :</th>
+          <th>{{ totalPirce() | currency }}</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+//
+   Created by chaochen on 15/10/10.
+
+doctype html
+html(ng-app="CartApp")
+   head
+      title You Order
+      script(src="script/angular.js")
+      script(src="script/cartcontroller.js")
+      //link(rel='stylesheet', href='/stylesheets/style.css')
+   body
+      div(ng-controller="CartController")
+         h1 cart
+         table
+            tr(ng-repeat="item in items")
+               td(ng-bind="item.title")
+               //{{item.title}}
+               td
+                  input(ng-model='item.quantity')
+               td {{item.price | currency}}
+               td {{item.price * item.quantity | currency}}
+               td
+                  button(ng-click="remove($index)") Remove
+            tr
+               td
+            tr
+               td
+            tr
+               th
+               th
+               th Total Price :
+               th {{ totalPirce() | currency }}
+               th
+               th
+
+
