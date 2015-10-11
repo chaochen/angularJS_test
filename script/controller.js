@@ -1,16 +1,30 @@
-/**
- * Created by chaochen on 15/10/10.
- */
-//function HelloController($scope){
-//    $scope.person = {name:'Hello'};
-//}
-var app = angular.module('myApp', []);
+(function(angular) {
+    'use strict';
+    angular.module('controllerAsExample', [])
+        .controller('SettingsController1', SettingsController1);
 
-app.controller('MyController', ['$scope', function($scope) {
-    $scope.greeting = {text: "Ari Lerner"};
+    function SettingsController1() {
+        this.name = "John Smith";
+        this.contacts = [
+            {type: 'phone', value: '408 555 1212'},
+            {type: 'email', value: 'john.smith@example.org'} ];
+    }
 
-}])
+    SettingsController1.prototype.greet = function() {
+        alert(this.name);
+    };
 
-//app.controller('MyController', function($scope) {
-//    $scope.greeting = {text: "Ari Lerner"};
-//})
+    SettingsController1.prototype.addContact = function() {
+        this.contacts.push({type: 'email', value: 'yourname@example.org'});
+    };
+
+    SettingsController1.prototype.removeContact = function(contactToRemove) {
+        var index = this.contacts.indexOf(contactToRemove);
+        this.contacts.splice(index, 1);
+    };
+
+    SettingsController1.prototype.clearContact = function(contact) {
+        contact.type = 'phone';
+        contact.value = '';
+    };
+})(window.angular);
